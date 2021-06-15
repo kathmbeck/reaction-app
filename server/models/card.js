@@ -1,0 +1,52 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const CardSchema = new Schema({
+    title: {
+      type: String,
+      required: [true, 'The Card title is required']
+    },
+    completed: {
+        type: Boolean, 
+        default: false,
+    },
+    dueDate: {
+        type: Date, 
+    },
+    archived: {
+        type: Boolean,
+        default: false,
+    },
+    labels: [
+      {
+        type: String
+      }
+    ],
+    description: {
+      type: String,
+    },
+    listId: {
+        type: String,
+        required: [true, 'The Card must have a List Id']
+    },
+    boardId: {
+        type: String,
+        required: [true, 'The Card must have a Board Id']
+    },
+    comments: [
+        { type: String } // Comment model?
+    ],
+    commentsCount: {
+      type: Number,
+      default: 0,
+      required: [true, 'The Card must have a Comments count']
+    },
+    // actions: [
+    //     { type: }
+    // ],
+    // position
+  }, { timestamps: true });
+
+  const Card = mongoose.model('Card', CardSchema)
+
+  module.exports = Card;
