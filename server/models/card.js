@@ -26,16 +26,19 @@ const CardSchema = new Schema({
       type: String,
     },
     listId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'List',
         required: [true, 'The Card must have a List Id']
     },
     boardId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Board',
         required: [true, 'The Card must have a Board Id']
     },
     comments: [
         { type: String } // Comment model?
     ],
+    // remove commentsCount?
     commentsCount: {
       type: Number,
       default: 0,

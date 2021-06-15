@@ -30,9 +30,10 @@ const createBoard = (req, res, next) => {
 };
 
 const getBoard = (req, res, next) => {
-  const id = req.params.id 
-  Board.findById(id).populate("lists")
-    .then(board => res.json({ board }))
+  const id = req.params.id
+  Board.findById(id, "title _id createdAt updatedAt lists")
+    .populate({path: "lists", populate: {path: "cards"}})
+    .then(board => res.json(board))
     .catch(err => 
       next(new HttpError("The board does not exist", 404))
     );

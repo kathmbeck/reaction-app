@@ -13,7 +13,8 @@ const ListSchema = new Schema({
       }
     ],
     boardId: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Board',
         required: [true, 'The List must have a Board Id']
     },
     // position
