@@ -10,8 +10,8 @@ const Board = () => {
   const dispatch = useDispatch();
  
   useEffect(() => {
-    dispatch(fetchBoard());
-  }, [dispatch])
+    dispatch(fetchBoard(id));
+  }, [dispatch, id])
 
   return (
     <>
