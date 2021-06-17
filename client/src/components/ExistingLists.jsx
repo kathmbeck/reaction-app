@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import List from "./List"
 
 const ExistingLists = () => {
-  const lists = useSelector(state => state.lists)
-
-  // if (!lists) {return null}
+  const lists = useSelector(state => state.lists);
 
   return (
     <div id="existing-lists" className="existing-lists">
