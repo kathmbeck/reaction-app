@@ -13,29 +13,12 @@ router.post('/boards', validateBoard, boardsController.createBoard );
 router.get('/boards/:id', boardsController.getBoard);
 
 router.post(
-  "/lists",
+  '/lists',
   listsController.createList,
   boardsController.addListToBoard,
   listsController.sendList
 );
 
-// EXPECTED PAYLOAD:
-// {
-//   "boardId": id,
-//   "list": {
-//     "title": "My list"
-//   }
-// }
-
-// EXPECTED RESPONSE:
-// {
-//   "_id": 10,
-//   "title": "My list",
-//   "boardId": 1,
-//   "createdAt": "2020-10-06T23:40:26.606Z",
-//   "updatedAt": "2020-10-06T23:40:26.606Z",
-//   "position": 65535.0
-// }
-
+router.put('/lists/:id', listsController.editList, listsController.sendList);
 
 module.exports = router;

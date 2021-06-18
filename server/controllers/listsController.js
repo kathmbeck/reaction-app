@@ -9,11 +9,11 @@ const createList = (req, res, next) => {
   };
   List.create(newList)
     .then((list) => {
-      List.find(
-        { _id: list._id },
+      List.findById(
+        list._id,
         "title _id boardId createdAt updatedAt")
         .then(list => {
-          req.list = list[0]
+          req.list = list;
           next();
         })
     })
@@ -26,5 +26,19 @@ const sendList = (req, res, next) => {
   return res.json(req.list)
 }
 
+const editList = (req, res, next) => {
+  const id = req.params.id
+  List.findByIdAndUpdate(id, req.body, { new: true })
+    .then(updatedList => {
+      // updatedList contain cards?
+      req.list = updatedList;
+      next();
+    })
+    .catch((err) =>
+      next(new HttpError("Editing the list failed, please try again", 500))
+    );
+}
+
 exports.createList = createList;
 exports.sendList = sendList;
+exports.editList = editList;
