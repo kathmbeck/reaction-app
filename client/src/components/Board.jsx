@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import {fetchBoard} from '../actions/BoardActions';
 import ExistingLists from './ExistingLists';
+import NewList from './NewList';
 
 const Board = () => {
   const { id } = useParams();
@@ -34,14 +35,7 @@ const Board = () => {
       <main>
         <div id="list-container" className="list-container">
           <ExistingLists /> 
-          <div id="new-list" className="new-list">
-            <span>Add a list...</span>
-            <input type="text" placeholder="Add a list..." />
-            <div>
-              <input type="submit" className="button" value="Save" />
-              <i className="x-icon icon"></i>
-            </div>
-          </div>
+          <NewList />
         </div>
       </main>
       <div className="menu-sidebar">
