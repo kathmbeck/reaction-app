@@ -12,6 +12,8 @@ export function createListSuccess(list) {
 export function createList(newListInfo) {
   return function(dispatch) {
     dispatch(createListRequest());
-    apiClient.createList(newListInfo, data => dispatch(createListSuccess(data.list))) 
+    apiClient.createList(newListInfo, list => {
+      dispatch(createListSuccess(list))
+    })
   }
 }
