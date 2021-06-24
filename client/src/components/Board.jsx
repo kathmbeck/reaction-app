@@ -5,15 +5,30 @@ import { fetchBoard } from "../actions/BoardActions";
 import ExistingLists from "./ExistingLists";
 import NewList from "./NewList";
 
-const Board = () => {
-  const { id } = useParams();
+const Board = (props) => {
+  const path = props.location.pathname; 
+  const cards = useSelector(state => state.cards)
+
+  let boardId;
+    if (path.match(/\/boards\//)) {
+      boardId = props.match.params.id
+    } else {
+      const cardId = props.match.params.id
+      const currentCard = cards.find((card) => card._id === cardId)
+      if (currentCard) {
+        boardId = currentCard.boardId
+      }
+    }
+  
   const boards = useSelector((state) => state.boards);
-  const board = boards.find(({ _id }) => _id === id);
+  const board = boards.find(({ _id }) => _id === boardId);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchBoard(id));
-  }, [dispatch, id]);
+    if (boardId) {
+      dispatch(fetchBoard(boardId));
+    }
+  }, [dispatch, boardId]);
 
   if (!board) {
     return null;

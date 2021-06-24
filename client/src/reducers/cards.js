@@ -1,4 +1,4 @@
-export default function lists(state = [], action) {
+export default function cards(state = [], action) {
   switch (action.type) {
     case "FETCH_BOARD_SUCCESS": {
       const cardsOnly = action.board.lists
@@ -9,6 +9,14 @@ export default function lists(state = [], action) {
 
       return cardsOnly;
     }
+    case "FETCH_CARD_SUCCESS": {
+      return state.map(card => {
+        if (card._id === action.card._id) {
+          return action.card
+        }
+        return card
+      });
+    }
     case "CREATE_CARD_SUCCESS": {
       return state.concat(action.card);
     }
@@ -16,11 +24,3 @@ export default function lists(state = [], action) {
       return state;
   }
 }
-
-// const listsWithoutCards = action.board.lists.reduce(
-//   (acc, list) => {
-//     const { cards, ...listsWithoutCards } = list;
-//     return acc.concat(listsWithoutCards );
-//   }, []
-// );
-// return listsWithoutCards;

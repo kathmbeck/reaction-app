@@ -6,9 +6,6 @@ export default function boards(state = [], action) {
     case "FETCH_BOARD_SUCCESS": {
       const { lists, ...boardWithoutLists } = action.board;
       return [boardWithoutLists];
-
-      // return state.filter((board) => board._id !== action.board._id)
-      //             .concat(boardWithoutLists);
     }
 
     case "CREATE_BOARD_SUCCESS": {
