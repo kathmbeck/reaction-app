@@ -3,8 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCard } from '../actions/CardActions';
 
-// import { fetchBoard } from '../actions/BoardActions'
-
 const CardModal = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
